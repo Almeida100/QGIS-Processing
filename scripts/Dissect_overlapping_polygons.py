@@ -1,0 +1,7 @@
+##Dissect overlapping polygons=name
+##Select_polygon_layer=vector polygon
+##Select_identifier_field=field Select_polygon_layer
+##Dissected_polygon_layer=output vector
+outputs_SAGAPOLYGONSELFINTERSECTION_1=processing.runalg('saga:polygonselfintersection', Select_polygon_layer,Select_identifier_field,None)
+outputs_SAGAPOLYGONPARTSTOSEPARATEPOLYGONS_1=processing.runalg('saga:polygonpartstoseparatepolygons', outputs_SAGAPOLYGONSELFINTERSECTION_1['INTERSECT'],True,None)
+outputs_QGISADDAUTOINCREMENTALFIELD_1=processing.runalg('qgis:addautoincrementalfield', outputs_SAGAPOLYGONPARTSTOSEPARATEPOLYGONS_1['PARTS'],Dissected_polygon_layer)
